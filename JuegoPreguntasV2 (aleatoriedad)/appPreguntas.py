@@ -62,7 +62,7 @@ class AplicacionPreguntas(tk.Frame):
                              width=700, bg='silver', font=('Arial', 18, 'bold')).grid(row=1, column=1)
         self.frameResultado.place(x=20, y=309)
         self.frameOpciones.place(x=20, y=209)
-        self.cargarMensajeBienvenida()
+        self.seleccionPreguntaAleatoria()
 
     def cargarMensajeBienvenida(self):
         mensaje = tk.Message(self.main_window, textvariable=self.mensajeBienvenida,
@@ -73,9 +73,10 @@ class AplicacionPreguntas(tk.Frame):
             AplicacionPreguntas.__Preguntas[AplicacionPreguntas.__PreguntaActual]['opciones'])
         
     def seleccionPreguntaAleatoria(self):
-        OpcionPregunta=choice(AplicacionPreguntas.__preguntasAleatorias)
-        indexOpcion=AplicacionPreguntas.__preguntasAleatorias.index(OpcionPregunta)
+        AplicacionPreguntas.__PreguntaActual=choice(AplicacionPreguntas.__preguntasAleatorias)
+        indexOpcion=AplicacionPreguntas.__preguntasAleatorias.index(AplicacionPreguntas.__PreguntaActual)
         del AplicacionPreguntas.__preguntasAleatorias[indexOpcion]
+        self.cargarMensajeBienvenida()
 
     def onSiguientePregunta(self, event=None):
         # Pregunta=iter(AplicacionPreguntas.__Preguntas)
